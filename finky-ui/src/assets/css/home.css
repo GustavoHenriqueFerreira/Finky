@@ -41,6 +41,8 @@ h1 {
     height: 350px;
     background-color: #F0F0F0;
     margin-bottom: 7%;
+    display: flex;
+    justify-content: center;
 }
 
 .alinhamento {
@@ -48,7 +50,7 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    text-align: justify;
+    max-width: 75%;
 }
 
 .alinhamento_secao h2 {
@@ -62,6 +64,13 @@ h1 {
     height: 350px;
     border-style: solid;
     border-color: #f0f0f0;
+}
+
+.alinhamento_simulacao{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 h2 {
@@ -209,6 +218,16 @@ th {
     background-color: #f0f0f0;
     border: none;
     margin-bottom: 4%;
+}
+
+.input_secao {
+    width: 95%;
+    height: 30px;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    border: 1px solid #000;
 }
 
 .fundo_cinza{

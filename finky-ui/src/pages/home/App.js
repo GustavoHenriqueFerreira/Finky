@@ -13,22 +13,23 @@ import axios from 'axios';
 function App() {
   const { isShowing, toggle } = useModal();
   const [tipoImovel, setTipoImovel] = useState('');
-  const [valorImovel, setValorImovel] = useState('');
+  const [valorImovel, setValorImovel] = useState();
   const [rendaMensal, setRendaMensal] = useState('');
   const [dataNascimento, setDataNascimento] = useState();
   const [listaCreditos, setListaCreditos] = useState([]);
-  const [entrada, setEntrada] = useState(0);
-  const [finaciamento, setFinaciamento] = useState(0);
+  const [entrada, setEntrada] = useState();
+  const [finaciamento, setFinaciamento] = useState();
   const [prazo, setPrazo] = useState();
   const [sucesso, setSucesso] = useState(false)
 
   function buscarCreditos() {
     axios('http://localhost:5000/api/Credito')
       .then(resposta => {
-        if (resposta.status == 200) {
+        if (resposta.status === 200) {
           // console.log(resposta.data)
           setListaCreditos(resposta.data)
           setSucesso(true)
+          setValorImovel(finaciamento)
         };
       })
       .catch(erro => console.log(erro));
@@ -92,23 +93,23 @@ function App() {
                   <h2>Dados de finaciamento</h2>
                   <p className='subtitulo_finaciamento'>Mexa na régua para ajustar os valores</p>
 
-                  <input type="text"
+                  <input type="date"
                     placeholder='Prazo do finaciamento'
                     value={prazo}
                     onChange={(campo) => setPrazo(campo.target.value)}
-                    className="input_modal" />
+                    className="input_secao" />
 
                   <input type="text"
                     placeholder='Valor do finacimento'
                     value={finaciamento}
                     onChange={(campo) => setFinaciamento(campo.target.value)}
-                    className="input_modal" />
+                    className="input_secao" />
 
                   <input type="text"
                     placeholder='Valor da entrada + FGTS'
                     value={entrada}
                     onChange={(campo) => setEntrada(campo.target.value)}
-                    className="input_modal" />
+                    className="input_secao" />
 
                   <button className="btn" onClick={buscarCreditos}>Realizar Simulação</button>
                 </div>
@@ -116,93 +117,94 @@ function App() {
 
               <div className='dados_simulacao'>
                 <h2>Dados de simulação</h2>
-                <p className='simulacao_texto'>Tipo de imóvel</p>
-                <p className='infos_simulacao'>Residencial</p>
+                <div className='alinhamento_simulacao'>
+                  <p className='simulacao_texto'>Tipo de imóvel</p>
+                  <p className='infos_simulacao'>Residencial</p>
 
-                <p className='simulacao_texto'>Valor do imóvel</p>
-                <p className='infos_simulacao'>R$ {finaciamento}</p>
-
-                <button className="btn" onClick={toggle}>Veja Mais</button>
-                <Modal
-                  isShowing={isShowing}
-                  hide={toggle}
-                />
+                  <p className='simulacao_texto'>Valor do imóvel</p>
+                  <p className='infos_simulacao'>R$ {valorImovel}</p>
+                  <button className="btn" onClick={toggle}>Veja Mais</button>
+                  <Modal
+                    isShowing={isShowing}
+                    hide={toggle}
+                  />
+                </div>
               </div>
             </div>
 
-{sucesso == true &&
-            <div class="tabela">
-              <table border="1">
-                <tr>
-                  <th><h2>Temos algumas opções para você escolher o caminho certo para financiar seu imóvel.</h2></th>
-                  {
-                    listaCreditos.map((creditos) => {
-                      return (
-                        <th>
-                          <div className='alinhamento_creditos'>
-                            <div>
-                              <div key={creditos.idCredito}>
-                                <p>{creditos.nomeCredito}</p>
+            {sucesso === true &&
+              <div class="tabela">
+                <table border="1">
+                  <tr>
+                    <th><h2>Temos algumas opções para você escolher o caminho certo para financiar seu imóvel.</h2></th>
+                    {
+                      listaCreditos.map((creditos) => {
+                        return (
+                          <th>
+                            <div className='alinhamento_creditos'>
+                              <div>
+                                <div key={creditos.idCredito}>
+                                  <p>{creditos.nomeCredito}</p>
+                                </div>
                               </div>
+                              <button className='btn_tabela'>Solicitar crédito</button>
                             </div>
-                            <button className='btn_tabela'>Solicitar crédito</button>
-                          </div>
-                        </th>
-                      )
-                    })
-                  }
-                </tr>
-                <tr className='fundo_cinza'>
-                  <td className='tabela_fixos'>Taxa de juros</td>
-                  {
-                    listaCreditos.map((creditos) => {
-                      return (
-                        <td className='tabela_valores'>{creditos.taxas}%</td>
-                      )
-                    })
-                  }
-                </tr>
-                <tr>
-                  <td className='tabela_fixos'>CET</td>
-                  <td className='tabela_valores'>1111-1111</td>
-                  <td className='tabela_valores'>2222-2222</td>
-                  <td className='tabela_valores'>2222-2222</td>
-                  <td className='tabela_valores'>2222-2222</td>
-                </tr>
-                <tr className='fundo_cinza'>
-                  <td className='tabela_fixos'>Parcela</td>
-                  <td className='tabela_valores'>R$</td>
-                  <td className='tabela_valores'>R$</td>
-                  <td className='tabela_valores'>R$</td>
-                  <td className='tabela_valores'>R$</td>
-                </tr>
-                <tr>
-                  <td className='tabela_fixos'>Tarifa de avaliação do imóvel</td>
-                  {
-                    listaCreditos.map((creditos) => {
-                      return (
-                        <td className='tabela_valores'>R${creditos.tarifaAvalicao},00</td>
-                      )
-                    })
-                  }
-                </tr>
-                <tr className='fundo_cinza'>
-                  <td className='tabela_fixos'>Finaciamento das taxas e impostos</td>
-                  <td className='tabela_valores'>1111-1111</td>
-                  <td className='tabela_valores'>2222-2222</td>
-                  <td className='tabela_valores'>2222-2222</td>
-                  <td className='tabela_valores'>2222-2222</td>
-                </tr>
-                <tr >
-                  <td className='tabela_fixos'>Finaciamento das taxas e impostos</td>
-                  <td className='tabela_valores'>Conta corrente, cartão de crédito, previdência</td>
-                  <td className='tabela_valores'>Conta corrente, cartão de crédito, previdência</td>
-                  <td className='tabela_valores'>Conta corrente, cartão de crédito, previdência</td>
-                  <td className='tabela_valores'>Conta corrente, cartão de crédito, previdência</td>
-                </tr>
-              </table>
-            </div>
-}
+                          </th>
+                        )
+                      })
+                    }
+                  </tr>
+                  <tr className='fundo_cinza'>
+                    <td className='tabela_fixos'>Taxa de juros</td>
+                    {
+                      listaCreditos.map((creditos) => {
+                        return (
+                          <td className='tabela_valores'>{creditos.taxas}%</td>
+                        )
+                      })
+                    }
+                  </tr>
+                  <tr>
+                    <td className='tabela_fixos'>CET</td>
+                    <td className='tabela_valores'>1111-1111</td>
+                    <td className='tabela_valores'>2222-2222</td>
+                    <td className='tabela_valores'>2222-2222</td>
+                    <td className='tabela_valores'>2222-2222</td>
+                  </tr>
+                  <tr className='fundo_cinza'>
+                    <td className='tabela_fixos'>Parcela</td>
+                    <td className='tabela_valores'>R$</td>
+                    <td className='tabela_valores'>R$</td>
+                    <td className='tabela_valores'>R$</td>
+                    <td className='tabela_valores'>R$</td>
+                  </tr>
+                  <tr>
+                    <td className='tabela_fixos'>Tarifa de avaliação do imóvel</td>
+                    {
+                      listaCreditos.map((creditos) => {
+                        return (
+                          <td className='tabela_valores'>R${creditos.tarifaAvalicao},00</td>
+                        )
+                      })
+                    }
+                  </tr>
+                  <tr className='fundo_cinza'>
+                    <td className='tabela_fixos'>Finaciamento das taxas e impostos</td>
+                    <td className='tabela_valores'>1111-1111</td>
+                    <td className='tabela_valores'>2222-2222</td>
+                    <td className='tabela_valores'>2222-2222</td>
+                    <td className='tabela_valores'>2222-2222</td>
+                  </tr>
+                  <tr >
+                    <td className='tabela_fixos'>Finaciamento das taxas e impostos</td>
+                    <td className='tabela_valores'>Conta corrente, cartão de crédito, previdência</td>
+                    <td className='tabela_valores'>Conta corrente, cartão de crédito, previdência</td>
+                    <td className='tabela_valores'>Conta corrente, cartão de crédito, previdência</td>
+                    <td className='tabela_valores'>Conta corrente, cartão de crédito, previdência</td>
+                  </tr>
+                </table>
+              </div>
+            }
           </div>
         </section>
       </main>
