@@ -71,7 +71,7 @@ function App() {
               className="input_modal" />
 
           </div>
-          <button className='btn_salvar'>Salvar</button>
+          <button className='btn_salvar' onClick={hide}>Salvar</button>
         </div>
       </div>
     </React.Fragment>, document.body
@@ -119,10 +119,13 @@ function App() {
                 <h2>Dados de simulação</h2>
                 <div className='alinhamento_simulacao'>
                   <p className='simulacao_texto'>Tipo de imóvel</p>
-                  <p className='infos_simulacao'>Residencial</p>
-
+                  <p className='simulacao_texto'>{tipoImovel}</p>
                   <p className='simulacao_texto'>Valor do imóvel</p>
-                  <p className='infos_simulacao'>R$ {valorImovel}</p>
+                  <p className='simulacao_texto'>R$ {valorImovel}</p>
+                  <p className='simulacao_texto'>Renda mensal</p>
+                  <p className='simulacao_texto'>{rendaMensal}</p>
+                  <p className='simulacao_texto'>Data de nascimento</p>
+                  <p className='simulacao_texto'>{dataNascimento}</p>
                   <button className="btn" onClick={toggle}>Veja Mais</button>
                   <Modal
                     isShowing={isShowing}

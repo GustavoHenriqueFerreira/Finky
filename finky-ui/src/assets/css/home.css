@@ -230,6 +230,14 @@ th {
     border: 1px solid #000;
 }
 
+.simulacao_texto{
+    text-align: center;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 1%;
+}
+
 .fundo_cinza{
     background-color: #c6c6c6;
 }
