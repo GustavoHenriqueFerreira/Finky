@@ -135,26 +135,29 @@ function App() {
                   {
                     listaCreditos.map((creditos) => {
                       return (
-                          <th>
-                            <div className='alinhamento_creditos'>
-                              <div>
-                                <div key={creditos.idCredito}>
-                                  <p>{creditos.nomeCredito}</p>
-                                </div>
+                        <th>
+                          <div className='alinhamento_creditos'>
+                            <div>
+                              <div key={creditos.idCredito}>
+                                <p>{creditos.nomeCredito}</p>
                               </div>
-                              <button className='btn_tabela'>Solicitar crédito</button>
                             </div>
-                          </th>
+                            <button className='btn_tabela'>Solicitar crédito</button>
+                          </div>
+                        </th>
                       )
                     })
                   }
                 </tr>
                 <tr className='fundo_cinza'>
                   <td className='tabela_fixos'>Taxa de juros</td>
-                  <td className='tabela_valores'>8888-8888</td>
-                  <td className='tabela_valores'>9999-9999</td>
-                  <td className='tabela_valores'>9999-9999</td>
-                  <td className='tabela_valores'>9999-9999</td>
+                  {
+                    listaCreditos.map((creditos) => {
+                      return (
+                        <td className='tabela_valores'>{creditos.taxas}</td>
+                      )
+                    })
+                  }
                 </tr>
                 <tr>
                   <td className='tabela_fixos'>CET</td>
@@ -172,10 +175,13 @@ function App() {
                 </tr>
                 <tr>
                   <td className='tabela_fixos'>Tarifa de avaliação do imóvel</td>
-                  <td className='tabela_valores'>R$</td>
-                  <td className='tabela_valores'>R$</td>
-                  <td className='tabela_valores'>R$</td>
-                  <td className='tabela_valores'>R$</td>
+                  {
+                    listaCreditos.map((creditos) => {
+                      return (
+                        <td className='tabela_valores'>R${creditos.tarifaAvalicao},00</td>
+                      )
+                    })
+                  }
                 </tr>
                 <tr className='fundo_cinza'>
                   <td className='tabela_fixos'>Finaciamento das taxas e impostos</td>
