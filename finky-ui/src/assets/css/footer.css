@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    width: 90%;
+    height: 100%;
+    max-width: 1920px;
+    margin: auto;
+}
+
+.rodape{
+    background-color: #4B0082;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titulo{
+    font-family: 'Nunito', sans-serif;
+    font-size: 42px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 10%;
+}
+
+.subtitulo{
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 18px;
+    color: #FFF;
+    font-weight: 600;
+}
+
+.email{
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 18px;
+    color: #FFF;
+}
+
+.menu_rodape{
+    display: flex;
+    flex-direction: column;
+}
+
+.imgFacabook{
+    width: 50px;
+    height: 50px;
+}
+
+.imagens{
+    display: flex;
+    flex-direction: row;
+}
+
+nav a{
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 18px;
+    color: #FFF;
+    text-decoration: none;
+    margin-bottom: 4%;
+}
+
+nav a:hover{
+    text-decoration: underline;
+}
+
+.texto_copyright{
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 18px;
+    color: #FFF;
+    margin-bottom: 1%;
+}
