@@ -20,6 +20,7 @@ function App() {
   const [entrada, setEntrada] = useState(0);
   const [finaciamento, setFinaciamento] = useState(0);
   const [prazo, setPrazo] = useState();
+  const [sucesso, setSucesso] = useState(false)
 
   function buscarCreditos() {
     axios('http://localhost:5000/api/Credito')
@@ -27,6 +28,7 @@ function App() {
         if (resposta.status == 200) {
           // console.log(resposta.data)
           setListaCreditos(resposta.data)
+          setSucesso(true)
         };
       })
       .catch(erro => console.log(erro));
@@ -128,6 +130,7 @@ function App() {
               </div>
             </div>
 
+{sucesso == true &&
             <div class="tabela">
               <table border="1">
                 <tr>
@@ -154,7 +157,7 @@ function App() {
                   {
                     listaCreditos.map((creditos) => {
                       return (
-                        <td className='tabela_valores'>{creditos.taxas}</td>
+                        <td className='tabela_valores'>{creditos.taxas}%</td>
                       )
                     })
                   }
@@ -199,6 +202,7 @@ function App() {
                 </tr>
               </table>
             </div>
+}
           </div>
         </section>
       </main>
