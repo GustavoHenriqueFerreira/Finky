@@ -17,8 +17,8 @@ function App() {
   const [rendaMensal, setRendaMensal] = useState('');
   const [dataNascimento, setDataNascimento] = useState();
   const [listaCreditos, setListaCreditos] = useState([]);
-  const [entrada, setEntrada] = useState();
-  const [finaciamento, setFinaciamento] = useState();
+  const [entrada, setEntrada] = useState(0);
+  const [finaciamento, setFinaciamento] = useState(0);
   const [prazo, setPrazo] = useState();
 
   function buscarCreditos() {
@@ -118,7 +118,7 @@ function App() {
                 <p className='infos_simulacao'>Residencial</p>
 
                 <p className='simulacao_texto'>Valor do imóvel</p>
-                <p className='infos_simulacao'>R$900.000,00</p>
+                <p className='infos_simulacao'>R$ {finaciamento}</p>
 
                 <button className="btn" onClick={toggle}>Veja Mais</button>
                 <Modal
@@ -132,52 +132,22 @@ function App() {
               <table border="1">
                 <tr>
                   <th><h2>Temos algumas opções para você escolher o caminho certo para financiar seu imóvel.</h2></th>
-                  <th>
-                    <div className='alinhamento_creditos'>
-                      <div>
-                        {
-                          listaCreditos.map((creditos) => {
-                            return (
+                  {
+                    listaCreditos.map((creditos) => {
+                      return (
+                          <th>
+                            <div className='alinhamento_creditos'>
                               <div>
-                                <img src={caixa} className='imagens'></img>
                                 <div key={creditos.idCredito}>
                                   <p>{creditos.nomeCredito}</p>
                                 </div>
                               </div>
-                            )
-                          })
-                        }
-                      </div>
-                      <button className='btn_tabela'>Solicitar crédito</button>
-                    </div>
-                  </th>
-                  <th>
-                    <div className='alinhamento_creditos'>
-                      <div>
-                        <img src={santander} className='imagens'></img>
-                        <p>Santander</p>
-                      </div>
-                      <button className='btn_tabela'>Solicitar crédito</button>
-                    </div>
-                  </th>
-                  <th>
-                    <div className='alinhamento_creditos'>
-                      <div>
-                        <img src={itau} className='imagens'></img>
-                        <p>Itaú</p>
-                      </div>
-                      <button className='btn_tabela'>Solicitar crédito</button>
-                    </div>
-                  </th>
-                  <th>
-                    <div className='alinhamento_creditos'>
-                      <div>
-                        <img src={bradesco} className='imagens'></img>
-                        <p>Bradesco</p>
-                      </div>
-                      <button className='btn_tabela'>Solicitar crédito</button>
-                    </div>
-                  </th>
+                              <button className='btn_tabela'>Solicitar crédito</button>
+                            </div>
+                          </th>
+                      )
+                    })
+                  }
                 </tr>
                 <tr className='fundo_cinza'>
                   <td className='tabela_fixos'>Taxa de juros</td>
