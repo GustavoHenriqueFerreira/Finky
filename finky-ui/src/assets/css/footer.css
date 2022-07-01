@@ -60,7 +60,7 @@
     height: 50px;
 }
 
-.imagens{
+.imagem{
     display: flex;
     flex-direction: row;
 }

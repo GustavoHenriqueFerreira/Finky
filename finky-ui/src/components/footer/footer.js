@@ -27,7 +27,7 @@ export default function Footer() {
                     <a>Solicitar finaciamento</a>
                 </nav>
 
-                <div className='imagens'>
+                <div className='imagem'>
                     <img className='imgFacabook' src={facebook} />
                     <img className='imgFacabook' src={facebook} />
                     <img className='imgFacabook' src={facebook} />
