@@ -1,4 +1,4 @@
-# 💻Finky
+# 💻 Finky
 
 Finky é uma empresa de crédito imobiliário que irá revolucionar o mercado!!!!
 
