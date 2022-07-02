@@ -1,6 +1,7 @@
 # Finky
 
 Finky é uma empresa de crédito imobiliário que irá revolucionar o mercado!!!!
+
 A Sua gestão passou a se tornar complicada devido à alta demanda de clientes e assim foi preciso de uma aplicação que suprisse suas necessidades.
 
 ## 🔨 Rodar o projeto
